@@ -1,5 +1,44 @@
 # Changelog
 
+## [6.1.0](https://github.com/super-linter/super-linter/compare/v6.0.0...v6.1.0) (2024-02-08)
+
+
+### 🚀 Features
+
+* automatically set the default branch ([#5242](https://github.com/super-linter/super-linter/issues/5242)) ([fe6e29b](https://github.com/super-linter/super-linter/commit/fe6e29b68595815676874fe5db0b240c215f7d48))
+* remove mypy cache ([#5210](https://github.com/super-linter/super-linter/issues/5210)) ([ef9449e](https://github.com/super-linter/super-linter/commit/ef9449e2b0369fcb124127ba0986c51982321f7a))
+
+
+### 🐛 Bugfixes
+
+* create mypy cache directory ([#5240](https://github.com/super-linter/super-linter/issues/5240)) ([38edbe5](https://github.com/super-linter/super-linter/commit/38edbe557a40199e2bbb2b014cc88455322ef224))
+* don't add unnecessary empty lines ([#5221](https://github.com/super-linter/super-linter/issues/5221)) ([eded427](https://github.com/super-linter/super-linter/commit/eded42747b4512364eb30228b610b9c648aa0082))
+* don't print empty lines with default logging ([#5238](https://github.com/super-linter/super-linter/issues/5238)) ([20ded71](https://github.com/super-linter/super-linter/commit/20ded7178b0b0084f04fec11e40943e69cefd6a1))
+
+
+### ⬆️ Dependency updates
+
+* **dev-docker:** bump node in /dev-dependencies ([#5230](https://github.com/super-linter/super-linter/issues/5230)) ([0b5a56d](https://github.com/super-linter/super-linter/commit/0b5a56dff83affc264886fe5252d6c67d977083a))
+* **docker:** bump alpine/terragrunt from 1.7.1 to 1.7.2 ([#5234](https://github.com/super-linter/super-linter/issues/5234)) ([31c3195](https://github.com/super-linter/super-linter/commit/31c31958389e9cdf8aa81abb7f8c82885f0eccbc))
+* **docker:** bump dart from 3.2.5-sdk to 3.2.6-sdk ([#5233](https://github.com/super-linter/super-linter/issues/5233)) ([ee53371](https://github.com/super-linter/super-linter/commit/ee5337123fb1500f3512641e0e9f9a514da0f354))
+* **docker:** bump hashicorp/terraform from 1.7.1 to 1.7.2 ([#5231](https://github.com/super-linter/super-linter/issues/5231)) ([27bb6ab](https://github.com/super-linter/super-linter/commit/27bb6abc569a490977a00a9243efaa530e9cca0f))
+* **docker:** bump zricethezav/gitleaks from v8.18.1 to v8.18.2 ([#5232](https://github.com/super-linter/super-linter/issues/5232)) ([299dbf0](https://github.com/super-linter/super-linter/commit/299dbf00a2d0326bc5abf0685c7a80ddcbc0bce0))
+* **npm:** bump @babel/eslint-parser in /dependencies ([#5226](https://github.com/super-linter/super-linter/issues/5226)) ([3b12f82](https://github.com/super-linter/super-linter/commit/3b12f82c30f442041c69ec7d12fa7a08e6b3f599))
+* **npm:** bump eslint-plugin-vue from 9.20.1 to 9.21.1 in /dependencies ([#5228](https://github.com/super-linter/super-linter/issues/5228)) ([7a2ac4f](https://github.com/super-linter/super-linter/commit/7a2ac4fa03c5718945e5f24b3d228369beafaa40))
+* **npm:** bump prettier from 3.2.4 to 3.2.5 in /dependencies ([#5227](https://github.com/super-linter/super-linter/issues/5227)) ([bdc05b4](https://github.com/super-linter/super-linter/commit/bdc05b4eb3cb34e369c48f3b5afd902f4d5e150e))
+* **npm:** bump react-router-dom from 6.21.3 to 6.22.0 in /dependencies ([#5225](https://github.com/super-linter/super-linter/issues/5225)) ([1bd6c0d](https://github.com/super-linter/super-linter/commit/1bd6c0d35df9b8a66e95788f2f43b7d67c936fe4))
+* **npm:** bump renovate from 37.161.0 to 37.173.0 in /dependencies ([#5229](https://github.com/super-linter/super-linter/issues/5229)) ([5b10868](https://github.com/super-linter/super-linter/commit/5b108687703f9f6d1a3c1ff735e17d3719692483))
+* **python:** bump checkov from 3.2.1 to 3.2.8 in /dependencies/python ([#5235](https://github.com/super-linter/super-linter/issues/5235)) ([5f511c3](https://github.com/super-linter/super-linter/commit/5f511c3a9d50ee761143ab665d546949d05eedab))
+* **python:** bump snakefmt from 0.9.0 to 0.10.0 in /dependencies/python ([#5236](https://github.com/super-linter/super-linter/issues/5236)) ([924b193](https://github.com/super-linter/super-linter/commit/924b19397ae9daac3a2473a14367cbcedeb830e4))
+* **python:** bump snakemake from 8.4.1 to 8.4.3 in /dependencies/python ([#5237](https://github.com/super-linter/super-linter/issues/5237)) ([b0183dc](https://github.com/super-linter/super-linter/commit/b0183dce186b180ef450698f65e8aa24501c8298))
+
+
+### 🧰 Maintenance
+
+* clone the repository before tagging ([#5208](https://github.com/super-linter/super-linter/issues/5208)) ([5c67776](https://github.com/super-linter/super-linter/commit/5c67776f9d9d3065efda30d47aef21b332fa2173))
+* fail on errors when installing chktex ([#5214](https://github.com/super-linter/super-linter/issues/5214)) ([92e9cb3](https://github.com/super-linter/super-linter/commit/92e9cb3c85af9f774355c7e7057e7760802695ca))
+* move linter verions logic outside runtime ([#5197](https://github.com/super-linter/super-linter/issues/5197)) ([d7790e4](https://github.com/super-linter/super-linter/commit/d7790e4f1cba52debbceac83c5324cee61860cff))
+
 ## [6.0.0](https://github.com/super-linter/super-linter/compare/v5.7.2...v6.0.0) (2024-01-31)
 
 
