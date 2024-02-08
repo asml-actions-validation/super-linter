@@ -18,6 +18,11 @@ run_test_cases_expect_success() {
   COMMAND_TO_RUN+=(-e ANSIBLE_DIRECTORY="/test/linters/ansible/good" -e CHECKOV_FILE_NAME=".checkov-test-linters-success.yaml" -e FILTER_REGEX_INCLUDE=".*good.*")
 }
 
+run_test_cases_non_default_home() {
+  run_test_cases_expect_success
+  COMMAND_TO_RUN+=(-e HOME=/tmp)
+}
+
 # Run the test setup function
 ${TEST_FUNCTION_NAME}
 
