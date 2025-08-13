@@ -632,6 +632,84 @@ InitializeAndValidateGitBeforeShaReferenceMergeCommitPushTest() {
   notice "${FUNCTION_NAME} PASS"
 }
 
+InitializeAndValidateGitBeforeShaReferenceMergeDefaultBranchInPullRequestBranchTest() {
+  local FUNCTION_NAME
+  FUNCTION_NAME="${FUNCNAME[0]}"
+  info "${FUNCTION_NAME} start"
+
+  GITHUB_WORKSPACE="$(mktemp -d)"
+  initialize_git_repository "${GITHUB_WORKSPACE}"
+
+  touch "${GITHUB_WORKSPACE}/test-${DEFAULT_BRANCH}-0.txt"
+  git -C "${GITHUB_WORKSPACE}" add .
+  git -C "${GITHUB_WORKSPACE}" commit -m "initial commit"
+
+  GIT_ROOT_COMMIT_SHA="$(git -C "${GITHUB_WORKSPACE}" rev-parse HEAD)"
+
+  local FEATURE_BRANCH_1_NAME="feature/test-branch-1"
+  local FEATURE_BRANCH_2_NAME="feature/test-branch-2"
+
+  debug "Create feature branch"
+  git -C "${GITHUB_WORKSPACE}" checkout -b "${FEATURE_BRANCH_1_NAME}"
+
+  info "Add commits to ${FEATURE_BRANCH_1_NAME}"
+  for i in {1..3}; do
+    touch "${GITHUB_WORKSPACE}/file${i}.txt"
+    git -C "${GITHUB_WORKSPACE}" add .
+    git -C "${GITHUB_WORKSPACE}" commit -m "feat: commit ${i}"
+  done
+
+  debug "Create a new feature branch from ${DEFAULT_BRANCH}"
+  git -C "${GITHUB_WORKSPACE}" switch "${DEFAULT_BRANCH}"
+  git -C "${GITHUB_WORKSPACE}" checkout -b "${FEATURE_BRANCH_2_NAME}"
+
+  debug "Add commits to ${FEATURE_BRANCH_2_NAME}"
+  touch "${GITHUB_WORKSPACE}/file-feat-branch-2.txt"
+  git -C "${GITHUB_WORKSPACE}" add .
+  git -C "${GITHUB_WORKSPACE}" commit -m "feat: commit on ${FEATURE_BRANCH_2_NAME}"
+
+  debug "Switch to ${FEATURE_BRANCH_1_NAME}"
+  git -C "${GITHUB_WORKSPACE}" switch "${FEATURE_BRANCH_1_NAME}"
+
+  info "Merge ${FEATURE_BRANCH_2_NAME} to ${FEATURE_BRANCH_1_NAME} (without squashing)"
+  git -C "${GITHUB_WORKSPACE}" merge \
+    -m "chore: merge commit ${FEATURE_BRANCH_2_NAME} into ${FEATURE_BRANCH_1_NAME}" \
+    --no-ff \
+    "${FEATURE_BRANCH_2_NAME}"
+
+  info "Add commits to ${FEATURE_BRANCH_1_NAME}"
+  touch "${GITHUB_WORKSPACE}/file-feat-1.txt"
+  git -C "${GITHUB_WORKSPACE}" add .
+  git -C "${GITHUB_WORKSPACE}" commit -m "feat: commit on ${FEATURE_BRANCH_1_NAME}"
+
+  local -i COMMIT_COUNT
+  COMMIT_COUNT=$(git -C "${GITHUB_WORKSPACE}" rev-list --count main.."${FEATURE_BRANCH_1_NAME}")
+  debug "Setting COMMIT_COUNT to ${COMMIT_COUNT}"
+
+  git_log_graph "${GITHUB_WORKSPACE}"
+
+  initialize_github_sha "${GITHUB_WORKSPACE}"
+
+  GITHUB_PULL_REQUEST_HEAD_SHA="$(git -C "${GITHUB_WORKSPACE}" rev-parse "${FEATURE_BRANCH_1_NAME}")"
+
+  local EXPECTED_GITHUB_BEFORE_SHA="${GIT_ROOT_COMMIT_SHA}"
+  debug "Setting EXPECTED_GITHUB_BEFORE_SHA to ${EXPECTED_GITHUB_BEFORE_SHA}"
+
+  GITHUB_SHA="${GITHUB_PULL_REQUEST_HEAD_SHA}"
+  debug "Updating GITHUB_SHA to the pull request head SHA for the ${FUNCTION_NAME} test: ${GITHUB_SHA}"
+
+  # Simulate pushing all the commits besides the initial one
+  InitializeAndValidateGitBeforeShaReference "${GITHUB_SHA}" "((${COMMIT_COUNT}))" "${EXPECTED_GITHUB_BEFORE_SHA}"
+
+  if [[ "${GITHUB_BEFORE_SHA}" != "${EXPECTED_GITHUB_BEFORE_SHA}" ]]; then
+    fatal "GITHUB_BEFORE_SHA (${GITHUB_BEFORE_SHA}) is not equal to the expected value: ${EXPECTED_GITHUB_BEFORE_SHA}"
+  else
+    debug "GITHUB_BEFORE_SHA (${GITHUB_BEFORE_SHA}) matches the expected value: ${EXPECTED_GITHUB_BEFORE_SHA}"
+  fi
+
+  notice "${FUNCTION_NAME} PASS"
+}
+
 InitializeRootCommitShaTest() {
   local FUNCTION_NAME
   FUNCTION_NAME="${FUNCNAME[0]}"
@@ -689,5 +767,6 @@ CheckIfFixModeIsEnabledTest
 ValidateCommitlintConfigurationTest
 InitializeAndValidateGitBeforeShaReferenceFastForwardPushTest
 InitializeAndValidateGitBeforeShaReferenceMergeCommitPushTest
+InitializeAndValidateGitBeforeShaReferenceMergeDefaultBranchInPullRequestBranchTest
 InitializeRootCommitShaTest
 DeprecatedConfigurationFileExistsTest
