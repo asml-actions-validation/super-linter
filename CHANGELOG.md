@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.2.1](https://github.com/super-linter/super-linter/compare/v8.2.0...v8.2.1) (2025-10-02)
+
+
+### 🐛 Bugfixes
+
+* biome ignore errors on unmatched files ([#7089](https://github.com/super-linter/super-linter/issues/7089)) ([8d1cfd5](https://github.com/super-linter/super-linter/commit/8d1cfd5ca320fa3a3cdb9718b78b71106b3867e6))
+* set CONFLICT_FOUND as expected ([#7093](https://github.com/super-linter/super-linter/issues/7093)) ([07cfe7e](https://github.com/super-linter/super-linter/commit/07cfe7eb123bd56fbd1c73d274193c488ad2e60f)), closes [#7092](https://github.com/super-linter/super-linter/issues/7092)
+
 ## [8.2.0](https://github.com/super-linter/super-linter/compare/v8.1.0...v8.2.0) (2025-09-30)
 
 
