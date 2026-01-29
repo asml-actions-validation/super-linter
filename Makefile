@@ -38,6 +38,8 @@ test: \
 	test-github-event-push-force-push \
 	test-github-event-push-force-push-multiple-commits \
 	test-runtime-dependencies-installation \
+	test-linters-bash-exec-ignore-libraries-expect-failure \
+	test-linters-bash-exec-ignore-libraries-expect-success \
 	test-linters-expect-failure \
 	test-linters-expect-failure-log-level-notice \
 	test-linters-expect-failure-suppress-output-on-success \
@@ -474,6 +476,20 @@ test-linters-expect-success: ## Run the linters test suite expecting successes
 	$(CURDIR)/test/run-super-linter-tests.sh \
 		$(SUPER_LINTER_TEST_CONTAINER_URL) \
 		"run_test_cases_expect_success" \
+		"$(IMAGE)"
+
+.PHONY: test-linters-bash-exec-ignore-libraries-expect-failure
+test-linters-bash-exec-ignore-libraries-expect-failure: ## Run the bash-exec linter test expecting failures
+	$(CURDIR)/test/run-super-linter-tests.sh \
+		$(SUPER_LINTER_TEST_CONTAINER_URL) \
+		"run_test_cases_bash_exec_ignore_libraries_expect_failure" \
+		"$(IMAGE)"
+
+.PHONY: test-linters-bash-exec-ignore-libraries-expect-success
+test-linters-bash-exec-ignore-libraries-expect-success: ## Run the bash-exec linter test expecting successes
+	$(CURDIR)/test/run-super-linter-tests.sh \
+		$(SUPER_LINTER_TEST_CONTAINER_URL) \
+		"run_test_cases_bash_exec_ignore_libraries_expect_success" \
 		"$(IMAGE)"
 
 .PHONY: test-linters-expect-failure

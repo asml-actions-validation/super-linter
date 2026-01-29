@@ -141,6 +141,40 @@ run_test_cases_expect_success() {
   EXPECTED_SUPER_LINTER_SUMMARY_FILE_PATH="test/data/super-linter-summary/markdown/table/expected-summary-test-linters-expect-success-${SUPER_LINTER_CONTAINER_IMAGE_TYPE}.md"
 }
 
+configure_bash_exec_ignore_libraries_test_case() {
+  local GIT_REPOSITORY_PATH
+  GIT_REPOSITORY_PATH="$(mktemp -d)"
+
+  local GITHUB_EVENT_NAME="push"
+
+  initialize_git_repository "${GIT_REPOSITORY_PATH}"
+  initialize_git_repository_contents "${GIT_REPOSITORY_PATH}" "2" "true" "${GITHUB_EVENT_NAME}" "true" "false" "false" "true" "false"
+
+  cp -rv test/linters/bash_exec/libraries/* "${GIT_REPOSITORY_PATH}/"
+
+  VALIDATE_ALL_CODEBASE="true"
+
+  configure_command_arguments_for_test_git_repository "${GIT_REPOSITORY_PATH}" "test/data/github-event/github-event-push-multiple-commits.json" "${GITHUB_EVENT_NAME}"
+  COMMAND_TO_RUN+=(-e VALIDATE_BASH_EXEC="true")
+
+  configure_use_find_algorithm
+
+  COMMAND_TO_RUN+=(-e BASH_EXEC_IGNORE_LIBRARIES="true")
+}
+
+run_test_cases_bash_exec_ignore_libraries_expect_success() {
+  configure_bash_exec_ignore_libraries_test_case
+
+  EXPECTED_SUPER_LINTER_SUMMARY_FILE_PATH="test/data/super-linter-summary/markdown/table/expected-summary-test-linters-bash-exec-ignore-libraries-expect-success.md"
+}
+
+run_test_cases_bash_exec_ignore_libraries_expect_failure() {
+  configure_bash_exec_ignore_libraries_test_case
+
+  EXPECTED_EXIT_CODE=1
+  EXPECTED_SUPER_LINTER_SUMMARY_FILE_PATH="test/data/super-linter-summary/markdown/table/expected-summary-test-linters-bash-exec-ignore-libraries-expect-failure.md"
+}
+
 run_test_cases_expect_failure_suppress_output_on_success() {
   run_test_cases_expect_failure
   COMMAND_TO_RUN+=(-e SUPPRESS_OUTPUT_ON_SUCCESS="true")
