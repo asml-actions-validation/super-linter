@@ -1,5 +1,26 @@
 # Changelog
 
+## [8.5.0](https://github.com/super-linter/super-linter/compare/v8.4.0...v8.5.0) (2026-01-29)
+
+
+### 🚀 Features
+
+* update codespell skip patterns for go modules ([#7465](https://github.com/super-linter/super-linter/issues/7465)) ([ff76a00](https://github.com/super-linter/super-linter/commit/ff76a002516303867ea0cc83fa748467362c80eb))
+
+
+### ⬆️ Dependency updates
+
+* **docker:** bump the docker group with 2 updates ([#7463](https://github.com/super-linter/super-linter/issues/7463)) ([adc2836](https://github.com/super-linter/super-linter/commit/adc2836ffbec0ad0644a1ecc239841a00aea2231))
+* **docker:** bump the docker group with 3 updates ([#7455](https://github.com/super-linter/super-linter/issues/7455)) ([a1b44ab](https://github.com/super-linter/super-linter/commit/a1b44ab603af174c580891fb513e31aad5ce360a))
+* **npm:** bump the npm group across 1 directory with 2 updates ([#7457](https://github.com/super-linter/super-linter/issues/7457)) ([962a22b](https://github.com/super-linter/super-linter/commit/962a22b4cc228dc288e1f1222736ca3c228118c7))
+* **python:** bump snakemake ([#7456](https://github.com/super-linter/super-linter/issues/7456)) ([5989994](https://github.com/super-linter/super-linter/commit/5989994705709338af23769caca3530931c897b5))
+
+
+### 🧰 Maintenance
+
+* **github-actions:** bump docker/login-action in the dev-ci-tools group ([#7454](https://github.com/super-linter/super-linter/issues/7454)) ([a2a7292](https://github.com/super-linter/super-linter/commit/a2a729287be00a15565a9b7d25ffaff26731dc67))
+* update tar ([#7462](https://github.com/super-linter/super-linter/issues/7462)) ([c082d16](https://github.com/super-linter/super-linter/commit/c082d1672788853a18cf12ad8b9a0ef0e3c4b1a8))
+
 ## [8.4.0](https://github.com/super-linter/super-linter/compare/v8.3.2...v8.4.0) (2026-01-28)
 
 
