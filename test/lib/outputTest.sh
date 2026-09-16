@@ -146,6 +146,8 @@ WriteSummaryFooterSuperLinterInfoTest() {
     cat <<EOF
 
 Powered by [Super-linter](https://github.com/super-linter/super-linter)
+Super-linter revision: ${BUILD_REVISION}
+Super-linter version: ${BUILD_VERSION}
 EOF
   )
   CheckIfContentsDiff "${RESULTS_FILE}" "${EXPECTED_CONTENT}"

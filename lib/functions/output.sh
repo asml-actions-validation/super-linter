@@ -65,6 +65,8 @@ WriteSummaryFooterSuperLinterInfo() {
   {
     echo ""
     echo "Powered by [Super-linter](https://github.com/super-linter/super-linter)"
+    echo "Super-linter revision: ${BUILD_REVISION}"
+    echo "Super-linter version: ${BUILD_VERSION}"
   } >>"${SUPER_LINTER_SUMMARY_OUTPUT_PATH}"
 }
 
