@@ -24,7 +24,7 @@
     "npm-groovy-lint": "^18.0.0",
     "prettier": "^3.9.8",
     "react": "^19.3.0",
-    "renovate": "^44.114.1",
+    "renovate": "^44.264.1",
     "stylelint": "^17.15.0",
     "stylelint-config-recommended-scss": "^17.0.1",
     "stylelint-config-standard": "^40.0.0",
